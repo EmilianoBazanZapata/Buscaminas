@@ -10,7 +10,8 @@ public class Cell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HasMine = (Random.value < 0.15);
+        GridHelper helper = GameObject.Find("GridHelper").GetComponent<GridHelper>();
+        HasMine = (Random.value < helper.MineWeight);
         int x = (int)this.transform.position.x;
         int y = (int)this.transform.parent.transform.position.y;
         //asigno la posicion en la grilla

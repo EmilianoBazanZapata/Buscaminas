@@ -8,6 +8,9 @@ public class GridHelper : MonoBehaviour
     public static int h = 21;
     //gusrdo cuantas celdas hay en total
     public static Cell[,] cells = new Cell[w, h];
+    [SerializeField]
+    [Range(0.0f,1.0f)]
+    public float MineWeight = 0.15f;
     //revelamos la posicion de todas las minas al perder
     public static void UncoverAllTheMines()
     {
