@@ -31,7 +31,7 @@ public class Cell : MonoBehaviour
     //metodo para saber si la celda esta o no tapada
     public bool IsCovered()
     {
-        return GetComponent<SpriteRenderer>().sprite.texture.name == "MinesweeoweSpritesheet_19";
+        return GetComponent<SpriteRenderer>().sprite.texture.name == "panel";
     }
     //metodo que se llama al hacer click en una celda
     private void OnMouseUpAsButton()
@@ -51,6 +51,10 @@ public class Cell : MonoBehaviour
             //descubrir toda el area sin minas de la celda abierta
             GridHelper.FloodFillUncover(x,y,new bool[GridHelper.w,GridHelper.h]);
             //comprobar si el juego a terminado o no
+            if (GridHelper.HasTheGameEnded())
+            {
+                Debug.Log("el juego ha terminado");
+            }
         }
     }
 }

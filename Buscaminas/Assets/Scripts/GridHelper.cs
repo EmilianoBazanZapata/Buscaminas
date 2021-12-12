@@ -75,4 +75,15 @@ public class GridHelper : MonoBehaviour
             FloodFillUncover(x, y + 1, visited);//arriba
         }
     }
+    public static bool HasTheGameEnded()
+    {
+        foreach (Cell cell in cells)
+        {
+            if(cell.IsCovered() && !cell.HasMine)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
