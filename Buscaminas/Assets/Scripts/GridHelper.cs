@@ -46,4 +46,33 @@ public class GridHelper : MonoBehaviour
         if (HasMineAt(x + 1, y + 1)) Count++;//arriba-derecha
         return Count;
     }
+    public static void FloodFillUncover(int x, int y, bool[,] visited)
+    {
+        //solo debemos proceder si el punto (x,y) es valida
+
+        if (x >= 0 && y >= 0 && x < w && y < h)
+        {
+            //si ya pase por la celda el algoritmo de flood fill no debera hacer nada
+            if (visited[x, y])
+            {
+                return;
+            }
+            //cuento la cantidad de minsas adjacentes
+            int AdjacentMines = CountAdjacentMines(x, y);
+            //muesto el numero de minas
+            cells[x, y].LoadTexture(AdjacentMines);
+            //verifico si tengo minas para saber si puedo destapar la celda
+            if (AdjacentMines > 0)
+            {
+                return;
+            }
+            //marco como visitada a la celda
+            visited[x, y] = true;
+            //visito todos los vecinos
+            FloodFillUncover(x - 1, y, visited);//izquierda
+            FloodFillUncover(x + 1, y, visited);//derecha
+            FloodFillUncover(x, y - 1, visited);//abajo
+            FloodFillUncover(x, y + 1, visited);//arriba
+        }
+    }
 }

@@ -48,7 +48,8 @@ public class Cell : MonoBehaviour
             int x = (int)this.transform.position.x;
             int y = (int)this.transform.parent.transform.position.y;
             LoadTexture(GridHelper.CountAdjacentMines(x,y));
-            //descubrir toa el area sein minas de la celda abierta
+            //descubrir toda el area sin minas de la celda abierta
+            GridHelper.FloodFillUncover(x,y,new bool[GridHelper.w,GridHelper.h]);
             //comprobar si el juego a terminado o no
         }
     }
