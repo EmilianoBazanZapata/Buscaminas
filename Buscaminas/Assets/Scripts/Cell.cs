@@ -7,6 +7,7 @@ public class Cell : MonoBehaviour
     public bool HasMine;
     public Sprite[] EmptyTexture;
     public Sprite MineTexture;
+    public Sprite Panel;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +27,15 @@ public class Cell : MonoBehaviour
         else
         {
             GetComponent<SpriteRenderer>().sprite = EmptyTexture[AdjacentCount];
-
         }
+    }
+    public void RestartTexture()
+    {
+        GetComponent<SpriteRenderer>().sprite = Panel;
+    }
+    public void ReloadMines()
+    {
+        Start();
     }
     //metodo para saber si la celda esta o no tapada
     public bool IsCovered()
@@ -37,24 +45,28 @@ public class Cell : MonoBehaviour
     //metodo que se llama al hacer click en una celda
     private void OnMouseUpAsButton()
     {
-        if (HasMine)
+        if (GameManager.SharedInstance.CurrentGameState == GameState.InGame)
         {
-            //mostrar mensaje de gameover
-            GridHelper.UncoverAllTheMines();
-            Debug.Log("Hay Mina");
-        }
-        else
-        {
-            //cambiar la textura de la celda
-            int x = (int)this.transform.position.x;
-            int y = (int)this.transform.parent.transform.position.y;
-            LoadTexture(GridHelper.CountAdjacentMines(x,y));
-            //descubrir toda el area sin minas de la celda abierta
-            GridHelper.FloodFillUncover(x,y,new bool[GridHelper.w,GridHelper.h]);
-            //comprobar si el juego a terminado o no
-            if (GridHelper.HasTheGameEnded())
+            if (HasMine)
             {
-                Debug.Log("el juego ha terminado");
+                //mostrar mensaje de gameover
+                GridHelper.UncoverAllTheMines();
+                GameManager.SharedInstance.GameOver();
+                //Debug.Log("Hay Mina");
+            }
+            else
+            {
+                //cambiar la textura de la celda
+                int x = (int)this.transform.position.x;
+                int y = (int)this.transform.parent.transform.position.y;
+                LoadTexture(GridHelper.CountAdjacentMines(x, y));
+                //descubrir toda el area sin minas de la celda abierta
+                GridHelper.FloodFillUncover(x, y, new bool[GridHelper.w, GridHelper.h]);
+                //comprobar si el juego a terminado o no
+                if (GridHelper.HasTheGameEnded())
+                {
+                    Debug.Log("el juego ha terminado");
+                }
             }
         }
     }

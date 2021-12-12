@@ -9,7 +9,7 @@ public class GridHelper : MonoBehaviour
     //gusrdo cuantas celdas hay en total
     public static Cell[,] cells = new Cell[w, h];
     [SerializeField]
-    [Range(0.0f,1.0f)]
+    [Range(0.0f, 1.0f)]
     public float MineWeight = 0.15f;
     //revelamos la posicion de todas las minas al perder
     public static void UncoverAllTheMines()
@@ -39,14 +39,22 @@ public class GridHelper : MonoBehaviour
     public static int CountAdjacentMines(int x, int y)
     {
         int Count = 0;
-        if (HasMineAt(x - 1, y - 1)) Count++;//abajo-izquierda
-        if (HasMineAt(x - 1, y)) Count++;//abajo-centro
-        if (HasMineAt(x - 1, y + 1)) Count++;//abajo-derecha
-        if (HasMineAt(x, y + 1)) Count++;//medio-izquierda
-        if (HasMineAt(x, y - 1)) Count++;//medio-derecha
-        if (HasMineAt(x + 1, y - 1)) Count++;//arriba-izquierda
-        if (HasMineAt(x + 1, y)) Count++;//arriba-centro
-        if (HasMineAt(x + 1, y + 1)) Count++;//arriba-derecha
+        if (HasMineAt(x - 1, y - 1))
+            Count++; //abajo-izquierda
+        if (HasMineAt(x - 1, y))
+            Count++; //abajo-centro
+        if (HasMineAt(x - 1, y + 1))
+            Count++; //abajo-derecha
+        if (HasMineAt(x, y + 1))
+            Count++; //medio-izquierda
+        if (HasMineAt(x, y - 1))
+            Count++; //medio-derecha
+        if (HasMineAt(x + 1, y - 1))
+            Count++; //arriba-izquierda
+        if (HasMineAt(x + 1, y))
+            Count++; //arriba-centro
+        if (HasMineAt(x + 1, y + 1))
+            Count++; //arriba-derecha
         return Count;
     }
     public static void FloodFillUncover(int x, int y, bool[,] visited)
@@ -72,21 +80,31 @@ public class GridHelper : MonoBehaviour
             //marco como visitada a la celda
             visited[x, y] = true;
             //visito todos los vecinos
-            FloodFillUncover(x - 1, y, visited);//izquierda
-            FloodFillUncover(x + 1, y, visited);//derecha
-            FloodFillUncover(x, y - 1, visited);//abajo
-            FloodFillUncover(x, y + 1, visited);//arriba
+            FloodFillUncover(x - 1, y, visited); //izquierda
+            FloodFillUncover(x + 1, y, visited); //derecha
+            FloodFillUncover(x, y - 1, visited); //abajo
+            FloodFillUncover(x, y + 1, visited); //arriba
         }
     }
     public static bool HasTheGameEnded()
     {
         foreach (Cell cell in cells)
         {
-            if(cell.IsCovered() && !cell.HasMine)
+            if (cell.IsCovered() && !cell.HasMine)
             {
                 return false;
             }
         }
         return true;
+    }
+     public static void RestartCells()
+    {
+        foreach (Cell cell in cells) 
+        { 
+            cell.RestartTexture();
+            cell.ReloadMines();
+        }
+        
+        
     }
 }
