@@ -16,7 +16,7 @@ public class Cell : MonoBehaviour
         //asigno la posicion en la grilla
         GridHelper.cells[x,y] = this;
     }
-    /*public void LoadTexture(int AdjacentCount)
+    public void LoadTexture(int AdjacentCount)
     {
         if (HasMine)
         {
@@ -27,7 +27,7 @@ public class Cell : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = EmptyTexture[AdjacentCount];
             
         }
-    }*/
+    }
     //metodo para saber si la celda esta o no tapada
     public bool IsCovered()
     {
@@ -39,6 +39,7 @@ public class Cell : MonoBehaviour
         if(HasMine)
         {
             //mostrar mensaje de gameover
+            GridHelper.UncoverAllTheMines();
             Debug.Log("Hay Mina");
         }
         else

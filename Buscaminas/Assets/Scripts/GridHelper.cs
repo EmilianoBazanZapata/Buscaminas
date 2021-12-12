@@ -10,9 +10,15 @@ public class GridHelper : MonoBehaviour
     public static int h = 21;
     //
     public static Cell[,] cells = new Cell[w,h];
-    // Start is called before the first frame update
-    void Start()
+
+    public static void UncoverAllTheMines()
     {
-        
+        foreach (Cell c in cells)
+        {
+            if(c.HasMine)
+            {
+                c.LoadTexture(0);
+            }
+        }
     }
 }
