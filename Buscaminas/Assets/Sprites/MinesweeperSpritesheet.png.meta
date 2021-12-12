@@ -1,0 +1,1308 @@
+fileFormatVersion: 2
+guid: 0ff11e254cb4e594b9e5ebaca909b695
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1487351204273328377
+    second: MinesweeperSpritesheet_0
+  - first:
+      213: 2007544958725327780
+    second: MinesweeperSpritesheet_1
+  - first:
+      213: 7094384511346818631
+    second: MinesweeperSpritesheet_2
+  - first:
+      213: 3436310434393344278
+    second: MinesweeperSpritesheet_3
+  - first:
+      213: 1570627762830710988
+    second: MinesweeperSpritesheet_4
+  - first:
+      213: 1258767082551686825
+    second: MinesweeperSpritesheet_5
+  - first:
+      213: -2089144130942412958
+    second: MinesweeperSpritesheet_6
+  - first:
+      213: -532761009694465824
+    second: MinesweeperSpritesheet_7
+  - first:
+      213: 2113878160942954373
+    second: MinesweeperSpritesheet_8
+  - first:
+      213: -2628935637879927159
+    second: MinesweeperSpritesheet_9
+  - first:
+      213: -5491292423628402467
+    second: MinesweeperSpritesheet_10
+  - first:
+      213: -3979212115915942571
+    second: MinesweeperSpritesheet_11
+  - first:
+      213: 4372143187621056408
+    second: MinesweeperSpritesheet_12
+  - first:
+      213: 3705598929461124355
+    second: MinesweeperSpritesheet_13
+  - first:
+      213: 3663426832957010477
+    second: MinesweeperSpritesheet_14
+  - first:
+      213: -833311433271015627
+    second: MinesweeperSpritesheet_15
+  - first:
+      213: 5827788766565090985
+    second: MinesweeperSpritesheet_16
+  - first:
+      213: 8761528292352727565
+    second: MinesweeperSpritesheet_17
+  - first:
+      213: -2545353754225897804
+    second: MinesweeperSpritesheet_18
+  - first:
+      213: -5809909350076315933
+    second: MinesweeperSpritesheet_19
+  - first:
+      213: 540559482706355522
+    second: MinesweeperSpritesheet_20
+  - first:
+      213: -2936289319515458840
+    second: MinesweeperSpritesheet_21
+  - first:
+      213: 3963112292706525610
+    second: MinesweeperSpritesheet_22
+  - first:
+      213: 3867645516293516958
+    second: MinesweeperSpritesheet_23
+  - first:
+      213: 1727097523160995462
+    second: MinesweeperSpritesheet_24
+  - first:
+      213: -1339099453208281130
+    second: MinesweeperSpritesheet_25
+  - first:
+      213: 4547037126648251110
+    second: MinesweeperSpritesheet_26
+  - first:
+      213: -106109437869607989
+    second: MinesweeperSpritesheet_27
+  - first:
+      213: 2087093082785922767
+    second: MinesweeperSpritesheet_28
+  - first:
+      213: 7660589546299384780
+    second: MinesweeperSpritesheet_29
+  - first:
+      213: 4688360867814014249
+    second: MinesweeperSpritesheet_30
+  - first:
+      213: -3060945950680258812
+    second: MinesweeperSpritesheet_31
+  - first:
+      213: -187651660390114422
+    second: MinesweeperSpritesheet_32
+  - first:
+      213: -4312359856771818233
+    second: MinesweeperSpritesheet_33
+  - first:
+      213: -5955147587045659885
+    second: MinesweeperSpritesheet_34
+  - first:
+      213: 7930919339412568632
+    second: MinesweeperSpritesheet_35
+  - first:
+      213: -3852450371877682928
+    second: MinesweeperSpritesheet_36
+  - first:
+      213: -1857185938559204654
+    second: MinesweeperSpritesheet_37
+  - first:
+      213: 7769441096765423296
+    second: MinesweeperSpritesheet_38
+  - first:
+      213: -3666611153704478489
+    second: MinesweeperSpritesheet_39
+  - first:
+      213: 7837692813986619225
+    second: MinesweeperSpritesheet_40
+  - first:
+      213: -656658023341247167
+    second: MinesweeperSpritesheet_41
+  - first:
+      213: 7865156083649273455
+    second: MinesweeperSpritesheet_42
+  - first:
+      213: 4887917520597691520
+    second: MinesweeperSpritesheet_43
+  - first:
+      213: -985980581195132107
+    second: MinesweeperSpritesheet_44
+  - first:
+      213: -8074323997177096959
+    second: MinesweeperSpritesheet_45
+  - first:
+      213: -7407876892005985053
+    second: MinesweeperSpritesheet_46
+  - first:
+      213: -5560870544505164509
+    second: MinesweeperSpritesheet_47
+  - first:
+      213: -1084650501531921236
+    second: MinesweeperSpritesheet_48
+  - first:
+      213: -6222721859056335815
+    second: MinesweeperSpritesheet_49
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 106
+        width: 4
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70fe905c5fddb5be0800000000000000
+      internalID: -1487351204273328377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 106
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ab0377e08b3cdb10800000000000000
+      internalID: 2007544958725327780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 106
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74e3cda1021547260800000000000000
+      internalID: 7094384511346818631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 106
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 619cbfb322a30bf20800000000000000
+      internalID: 3436310434393344278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 106
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc814e5f0adfbc510800000000000000
+      internalID: 1570627762830710988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 106
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a6b27a0ef9087110800000000000000
+      internalID: 1258767082551686825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 106
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 267d59e4b7ed103e0800000000000000
+      internalID: -2089144130942412958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 106
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e0abf23fa04b98f0800000000000000
+      internalID: -532761009694465824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 106
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 587f571dcf0065d10800000000000000
+      internalID: 2113878160942954373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 106
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98e4dce47f4248bd0800000000000000
+      internalID: -2628935637879927159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 106
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd0d5d382a20bc3b0800000000000000
+      internalID: -5491292423628402467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 106
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55556e0d9aff6c8c0800000000000000
+      internalID: -3979212115915942571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 106
+        width: 12
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89f0c458019fcac30800000000000000
+      internalID: 4372143187621056408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 79
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30d199ed79eec6330800000000000000
+      internalID: 3705598929461124355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 79
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d22790f7b4b17d230800000000000000
+      internalID: 3663426832957010477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 79
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5370c90aaab7f64f0800000000000000
+      internalID: -833311433271015627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 79
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a6cf19910770e050800000000000000
+      internalID: 5827788766565090985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 79
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0a1833bf83379970800000000000000
+      internalID: 8761528292352727565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 79
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4be88a31f361dacd0800000000000000
+      internalID: -2545353754225897804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 62
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e60b737a3e0f5fa0800000000000000
+      internalID: -5809909350076315933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 62
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2456eaa4cf3708700800000000000000
+      internalID: 540559482706355522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 62
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e2f188cb643047d0800000000000000
+      internalID: -2936289319515458840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 62
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa1a1cbf1adcff630800000000000000
+      internalID: 3963112292706525610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 62
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9eaecbfa13aca530800000000000000
+      internalID: 3867645516293516958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 62
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 686d778fb02e7f710800000000000000
+      internalID: 1727097523160995462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 62
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dfb99464209a6de0800000000000000
+      internalID: -1339099453208281130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 62
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e2c16aec225a1f30800000000000000
+      internalID: 4547037126648251110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc337784706078ef0800000000000000
+      internalID: -106109437869607989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce31a4d918d6fc10800000000000000
+      internalID: 2087093082785922767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc3ee35da91ef4a60800000000000000
+      internalID: 7660589546299384780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92d75e88e57601140800000000000000
+      internalID: 4688360867814014249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 407680d10e55585d0800000000000000
+      internalID: -3060945950680258812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8b5fe02fc3556df0800000000000000
+      internalID: -187651660390114422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70d1671ee8b6724c0800000000000000
+      internalID: -4312359856771818233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31b6e1142d01b5da0800000000000000
+      internalID: -5955147587045659885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83a36ff8e19401e60800000000000000
+      internalID: 7930919339412568632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 23
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 011c8654cc8598ac0800000000000000
+      internalID: -3852450371877682928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 23
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d2045a8a33f936e0800000000000000
+      internalID: -1857185938559204654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 23
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce3604638992db60800000000000000
+      internalID: 7769441096765423296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 23
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e895fd05949d1dc0800000000000000
+      internalID: -3666611153704478489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_40
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 23
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95fdd44a61415cc60800000000000000
+      internalID: 7837692813986619225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 23
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 145b5d3c10513e6f0800000000000000
+      internalID: -656658023341247167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_42
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 23
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6edae469c5a62d60800000000000000
+      internalID: 7865156083649273455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_43
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 23
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08c22a2761f55d340800000000000000
+      internalID: 4887917520597691520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_44
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5335e66a2e71152f0800000000000000
+      internalID: -985980581195132107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_45
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 1
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 105d8daaa1d32ff80800000000000000
+      internalID: -8074323997177096959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_46
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 1
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e49820273fe13990800000000000000
+      internalID: -7407876892005985053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_47
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 1
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d26d8d3b1d3d2b0800000000000000
+      internalID: -5560870544505164509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_48
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 1
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca49db69d1c82f0f0800000000000000
+      internalID: -1084650501531921236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinesweeperSpritesheet_49
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93483e6407374a9a0800000000000000
+      internalID: -6222721859056335815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
