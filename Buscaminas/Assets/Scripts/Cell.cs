@@ -11,10 +11,10 @@ public class Cell : MonoBehaviour
     void Start()
     {
         HasMine = (Random.value < 0.15);
-        int x = (int) this.transform.position.x;
-        int y = (int) this.transform.parent.transform.position.y;
+        int x = (int)this.transform.position.x;
+        int y = (int)this.transform.parent.transform.position.y;
         //asigno la posicion en la grilla
-        GridHelper.cells[x,y] = this;
+        GridHelper.cells[x, y] = this;
     }
     public void LoadTexture(int AdjacentCount)
     {
@@ -22,10 +22,10 @@ public class Cell : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().sprite = MineTexture;
         }
-        else 
+        else
         {
             GetComponent<SpriteRenderer>().sprite = EmptyTexture[AdjacentCount];
-            
+
         }
     }
     //metodo para saber si la celda esta o no tapada
@@ -36,7 +36,7 @@ public class Cell : MonoBehaviour
     //metodo que se llama al hacer click en una celda
     private void OnMouseUpAsButton()
     {
-        if(HasMine)
+        if (HasMine)
         {
             //mostrar mensaje de gameover
             GridHelper.UncoverAllTheMines();
@@ -45,6 +45,9 @@ public class Cell : MonoBehaviour
         else
         {
             //cambiar la textura de la celda
+            int x = (int)this.transform.position.x;
+            int y = (int)this.transform.parent.transform.position.y;
+            LoadTexture(GridHelper.CountAdjacentMines(x,y));
             //descubrir toa el area sein minas de la celda abierta
             //comprobar si el juego a terminado o no
         }
