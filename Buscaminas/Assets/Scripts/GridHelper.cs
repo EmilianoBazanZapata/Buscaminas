@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GridHelper : MonoBehaviour
 {
-    public static int w = 21;
-    public static int h = 21;
-    //gusrdo cuantas celdas hay en total
+    public static readonly int w = 21;
+    public static readonly int h = 21;
+    //guardo cuantas celdas hay en total
     public static Cell[,] cells = new Cell[w, h];
-    [SerializeField]
+
     [Range(0.0f, 1.0f)]
     public float MineWeight = 0.15f;
     //revelamos la posicion de todas las minas al perder
@@ -38,25 +36,18 @@ public class GridHelper : MonoBehaviour
     }
     public static int CountAdjacentMines(int x, int y)
     {
-        int Count = 0;
-        if (HasMineAt(x - 1, y - 1))
-            Count++; //abajo-izquierda
-        if (HasMineAt(x - 1, y))
-            Count++; //abajo-centro
-        if (HasMineAt(x - 1, y + 1))
-            Count++; //abajo-derecha
-        if (HasMineAt(x, y + 1))
-            Count++; //medio-izquierda
-        if (HasMineAt(x, y - 1))
-            Count++; //medio-derecha
-        if (HasMineAt(x + 1, y - 1))
-            Count++; //arriba-izquierda
-        if (HasMineAt(x + 1, y))
-            Count++; //arriba-centro
-        if (HasMineAt(x + 1, y + 1))
-            Count++; //arriba-derecha
-        return Count;
+        int count = 0;
+        for (int i = x - 1; i <= x + 1; i++)
+        {
+            for (int j = y - 1; j <= y + 1; j++)
+            {
+                if ((i != x || j != y) && HasMineAt(i, j))
+                    count++;
+            }
+        }
+        return count;
     }
+
     public static void FloodFillUncover(int x, int y, bool[,] visited)
     {
         //solo debemos proceder si el punto (x,y) es valida
@@ -97,14 +88,12 @@ public class GridHelper : MonoBehaviour
         }
         return true;
     }
-     public static void RestartCells()
+    public static void RestartCells()
     {
-        foreach (Cell cell in cells) 
-        { 
+        foreach (Cell cell in cells)
+        {
             cell.RestartTexture();
             cell.ReloadMines();
         }
-        
-        
     }
 }
