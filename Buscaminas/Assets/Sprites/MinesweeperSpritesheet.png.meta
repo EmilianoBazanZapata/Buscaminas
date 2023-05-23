@@ -153,7 +153,7 @@ TextureImporter:
       213: -6222721859056335815
     second: MinesweeperSpritesheet_49
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -174,6 +174,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -212,6 +213,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -227,6 +229,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1300,6 +1314,57 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      MinesweeperSpritesheet_0: -1487351204273328377
+      MinesweeperSpritesheet_1: 2007544958725327780
+      MinesweeperSpritesheet_10: -5491292423628402467
+      MinesweeperSpritesheet_11: -3979212115915942571
+      MinesweeperSpritesheet_12: 4372143187621056408
+      MinesweeperSpritesheet_13: 3705598929461124355
+      MinesweeperSpritesheet_14: 3663426832957010477
+      MinesweeperSpritesheet_15: -833311433271015627
+      MinesweeperSpritesheet_16: 5827788766565090985
+      MinesweeperSpritesheet_17: 8761528292352727565
+      MinesweeperSpritesheet_18: -2545353754225897804
+      MinesweeperSpritesheet_19: -5809909350076315933
+      MinesweeperSpritesheet_2: 7094384511346818631
+      MinesweeperSpritesheet_20: 540559482706355522
+      MinesweeperSpritesheet_21: -2936289319515458840
+      MinesweeperSpritesheet_22: 3963112292706525610
+      MinesweeperSpritesheet_23: 3867645516293516958
+      MinesweeperSpritesheet_24: 1727097523160995462
+      MinesweeperSpritesheet_25: -1339099453208281130
+      MinesweeperSpritesheet_26: 4547037126648251110
+      MinesweeperSpritesheet_27: -106109437869607989
+      MinesweeperSpritesheet_28: 2087093082785922767
+      MinesweeperSpritesheet_29: 7660589546299384780
+      MinesweeperSpritesheet_3: 3436310434393344278
+      MinesweeperSpritesheet_30: 4688360867814014249
+      MinesweeperSpritesheet_31: -3060945950680258812
+      MinesweeperSpritesheet_32: -187651660390114422
+      MinesweeperSpritesheet_33: -4312359856771818233
+      MinesweeperSpritesheet_34: -5955147587045659885
+      MinesweeperSpritesheet_35: 7930919339412568632
+      MinesweeperSpritesheet_36: -3852450371877682928
+      MinesweeperSpritesheet_37: -1857185938559204654
+      MinesweeperSpritesheet_38: 7769441096765423296
+      MinesweeperSpritesheet_39: -3666611153704478489
+      MinesweeperSpritesheet_4: 1570627762830710988
+      MinesweeperSpritesheet_40: 7837692813986619225
+      MinesweeperSpritesheet_41: -656658023341247167
+      MinesweeperSpritesheet_42: 7865156083649273455
+      MinesweeperSpritesheet_43: 4887917520597691520
+      MinesweeperSpritesheet_44: -985980581195132107
+      MinesweeperSpritesheet_45: -8074323997177096959
+      MinesweeperSpritesheet_46: -7407876892005985053
+      MinesweeperSpritesheet_47: -5560870544505164509
+      MinesweeperSpritesheet_48: -1084650501531921236
+      MinesweeperSpritesheet_49: -6222721859056335815
+      MinesweeperSpritesheet_5: 1258767082551686825
+      MinesweeperSpritesheet_6: -2089144130942412958
+      MinesweeperSpritesheet_7: -532761009694465824
+      MinesweeperSpritesheet_8: 2113878160942954373
+      MinesweeperSpritesheet_9: -2628935637879927159
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
