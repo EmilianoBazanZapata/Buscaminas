@@ -1,56 +1,156 @@
-﻿# Unity generated folders
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
+﻿# ============================================================
+# Unity generated folders
+# ============================================================
 
-# Auto-generated VS/MD solution and project files
-/*.csproj
-/*.unityproj
-/*.sln
-/*.suo
-/*.tmp
-/*.user
-/*.userprefs
-/*.pidb
-/*.booproj
-/*.svd
-/*.pdb
-/*.mdb
-/*.opendb
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+[Aa]rtifacts/
 
-# Unity3D generated meta files
-/*.pidb.meta
+# Unity build outputs
+[Bb]uild/
+[Bb]uilds/
+ServerData/
 
-# Unity3D Generated File On Crash Reports
+# Exported Unity projects
+[Ee]xportedObj/
+
+# ============================================================
+# Unity generated files
+# ============================================================
+
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
 sysinfo.txt
 
-# Builds
-/[Bb]uilds/
-*.apk
-*.unitypackage
-
-# Crashlytics generated file
+# Crash reports
 crashlytics-build.properties
 
-# macOS folder attributes
-__MACOSX/
+# Burst compiler
+[Bb]urst[Bb]ackup/
+*.burstdebug
 
-# JetBrains Rider
-.idea/
+# Addressables generated data
+Assets/AddressableAssetsData/*/*.bin*
+Assets/StreamingAssets/aa.meta
+Assets/StreamingAssets/aa/
+
+# ============================================================
+# IDE generated files
+# ============================================================
+
+# Visual Studio
+.vs/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
 
 # Visual Studio Code
 .vscode/
 
-# Unity Artifacts
-/Artifacts/
+# JetBrains Rider
+.idea/
+*.sln.iml
+*.DotSettings.user
 
-# Unity generated logs
-/[Ll]ogs/
+# MonoDevelop
+*.userprefs
 
-# Unity User Settings
-/[Uu]ser[Ss]ettings/
+# ============================================================
+# Operating system files
+# ============================================================
 
-# Unity Project Settings
-/[Pp]roject[Ss]ettings/
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100/
+.fseventsd/
+.Spotlight-V100/
+.TemporaryItems/
+.Trashes/
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+__MACOSX/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================================
+# Build packages and installers
+# ============================================================
+
+*.apk
+*.aab
+*.unitypackage
+*.app
+*.exe
+*.msi
+*.dmg
+
+# ============================================================
+# Test and coverage results
+# ============================================================
+
+TestResults/
+[Cc]overage/
+*.coverage
+*.coveragexml
+
+# ============================================================
+# Temporary and backup files
+# ============================================================
+
+*.bak
+*.tmp
+*.temp
+*.swp
+*.swo
+*.orig
+*.log
+
+# ============================================================
+# Local environment and credentials
+# ============================================================
+
+.env
+.env.*
+!.env.example
+
+# ============================================================
+# Keep these Unity project files tracked
+# ============================================================
+
+!Assets/**/*.meta
+!Packages/manifest.json
+!Packages/packages-lock.json
+!ProjectSettings/
+!ProjectSettings/**
