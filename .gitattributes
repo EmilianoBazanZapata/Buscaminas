@@ -1,0 +1,30 @@
+# Normalize text on check-in and checkout without rewriting existing files.
+* text=auto eol=lf
+
+# Unity serialized assets use text diffs. No custom merge driver required.
+*.unity text eol=lf
+*.prefab text eol=lf
+*.asset text eol=lf
+*.meta text eol=lf
+*.asmdef text eol=lf
+*.asmref text eol=lf
+*.cs text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.shader text eol=lf
+*.cginc text eol=lf
+*.hlsl text eol=lf
+
+# Preserve binary assets byte-for-byte.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ttf binary
+*.otf binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.fbx binary
+*.blend binary
+*.psd binary
