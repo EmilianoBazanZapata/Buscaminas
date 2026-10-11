@@ -63,6 +63,7 @@ public class Cell : MonoBehaviour
                 //comprobar si el juego a terminado o no
                 if (GridHelper.HasTheGameEnded())
                 {
+                    GameManager.SharedInstance.WinGame();
                     Debug.Log("el juego ha terminado");
                 }
             }

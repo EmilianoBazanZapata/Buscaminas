@@ -55,10 +55,11 @@ public class GridHelper : MonoBehaviour
         if (x >= 0 && y >= 0 && x < w && y < h)
         {
             //si ya pase por la celda el algoritmo de flood fill no debera hacer nada
-            if (visited[x, y])
+            if (visited[x, y] || cells[x, y].HasMine)
             {
                 return;
             }
+            visited[x, y] = true;
             //cuento la cantidad de minsas adjacentes
             int AdjacentMines = CountAdjacentMines(x, y);
             //muesto el numero de minas
@@ -68,13 +69,17 @@ public class GridHelper : MonoBehaviour
             {
                 return;
             }
-            //marco como visitada a la celda
-            visited[x, y] = true;
             //visito todos los vecinos
-            FloodFillUncover(x - 1, y, visited); //izquierda
-            FloodFillUncover(x + 1, y, visited); //derecha
-            FloodFillUncover(x, y - 1, visited); //abajo
-            FloodFillUncover(x, y + 1, visited); //arriba
+            for (int i = x - 1; i <= x + 1; i++)
+            {
+                for (int j = y - 1; j <= y + 1; j++)
+                {
+                    if (i != x || j != y)
+                    {
+                        FloodFillUncover(i, j, visited);
+                    }
+                }
+            }
         }
     }
     public static bool HasTheGameEnded()

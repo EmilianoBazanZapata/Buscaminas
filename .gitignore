@@ -85,3 +85,6 @@ __MACOSX/
 AGENTS.md
 
 # Assets, Packages, ProjectSettings, and all .meta files remain eligible.
+
+# Graphify generated graph and cache.
+graphify-out/

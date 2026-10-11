@@ -4,9 +4,10 @@ using UnityEngine;
 //posibles estado del juego
 public enum GameState
 {
-    InGame,
-    GameOver,
-    Menu
+    InGame = 0,
+    GameOver = 1,
+    Menu = 2,
+    Victory = 3
 }
 public class GameManager : MonoBehaviour
 {
@@ -51,6 +52,11 @@ public class GameManager : MonoBehaviour
     {
         SetGameState(GameState.GameOver);
     }
+
+    public void WinGame()
+    {
+        SetGameState(GameState.Victory);
+    }
     //metodo para finalizar la aplicacion
     public void QuitGame()
     {
@@ -68,16 +74,20 @@ public class GameManager : MonoBehaviour
             case GameState.Menu:
                 MenuCanvas.enabled = true;
                 GameCanvas.enabled = false;
+                GameCanvas.gameObject.SetActive(false);
                 GameOverCanvas.enabled = false;
                 break;
             case GameState.InGame:
+            case GameState.Victory:
                 MenuCanvas.enabled = false;
                 GameCanvas.enabled = true;
+                GameCanvas.gameObject.SetActive(true);
                 GameOverCanvas.enabled = false;
                 break;
             case GameState.GameOver:
                 MenuCanvas.enabled = false;
                 GameCanvas.enabled = false;
+                GameCanvas.gameObject.SetActive(false);
                 GameOverCanvas.enabled = true;
                 break;
         }
