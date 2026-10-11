@@ -16,7 +16,7 @@ public class GridHelper : MonoBehaviour
         {
             if (c.HasMine)
             {
-                c.LoadTexture(0);
+                c.Reveal(0);
             }
         }
     }
@@ -55,7 +55,7 @@ public class GridHelper : MonoBehaviour
         if (x >= 0 && y >= 0 && x < w && y < h)
         {
             //si ya pase por la celda el algoritmo de flood fill no debera hacer nada
-            if (visited[x, y] || cells[x, y].HasMine)
+            if (visited[x, y] || cells[x, y].HasMine || !cells[x, y].IsCovered())
             {
                 return;
             }
@@ -63,7 +63,7 @@ public class GridHelper : MonoBehaviour
             //cuento la cantidad de minsas adjacentes
             int AdjacentMines = CountAdjacentMines(x, y);
             //muesto el numero de minas
-            cells[x, y].LoadTexture(AdjacentMines);
+            cells[x, y].Reveal(AdjacentMines);
             //verifico si tengo minas para saber si puedo destapar la celda
             if (AdjacentMines > 0)
             {
@@ -86,7 +86,7 @@ public class GridHelper : MonoBehaviour
     {
         foreach (Cell cell in cells)
         {
-            if (cell.IsCovered() && !cell.HasMine)
+            if (!cell.HasMine && cell.IsCovered())
             {
                 return false;
             }
