@@ -10,9 +10,13 @@ public class GridHelper : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float MineWeight = 0.15f;
 
+    [SerializeField] private Cell _cellPrefab;
+    [SerializeField] private Transform _boardRoot;
+
     private const float CoordinateTolerance = 0.0001f;
     private static GridHelper _owner;
     private bool _isInitialized;
+    private bool _cellsCreated;
     public MinesweeperBoard Board { get; private set; }
 
     public static bool IsInitialized =>
@@ -51,6 +55,11 @@ public class GridHelper : MonoBehaviour
             return FailInitialization("The board owner is missing, inactive, or belongs to an invalid scene.");
         }
 
+        if (!CreateCells())
+        {
+            return false;
+        }
+
         var registeredCells = new Cell[w, h];
         int ownerCount = 0;
         foreach (GameObject root in gameObject.scene.GetRootGameObjects())
@@ -86,10 +95,11 @@ public class GridHelper : MonoBehaviour
                     return FailInitialization($"Duplicate cell coordinates ({x}, {y}): '{GetCellPath(registeredCells[x, y])}' and '{path}'.");
                 }
                 if (!cell.isActiveAndEnabled || cell.GetComponent<SpriteRenderer>() == null ||
+                    cell.GetComponent<BoxCollider2D>() == null ||
                     cell.Panel == null || cell.MineTexture == null ||
                     cell.EmptyTexture == null || cell.EmptyTexture.Length != 9)
                 {
-                    return FailInitialization($"Cell '{path}' must be active and have a SpriteRenderer, Panel, MineTexture, and nine numbered sprites.");
+                    return FailInitialization($"Cell '{path}' must be active and have a SpriteRenderer, BoxCollider2D, Panel, MineTexture, and nine numbered sprites.");
                 }
                 foreach (Sprite sprite in cell.EmptyTexture)
                 {
@@ -136,6 +146,45 @@ public class GridHelper : MonoBehaviour
             }
         }
         _isInitialized = true;
+        return true;
+    }
+
+    private bool CreateCells()
+    {
+        // Restarts reuse the existing views and still validate them; never hide missing cells by rebuilding.
+        if (_cellsCreated)
+        {
+            return true;
+        }
+        if (_cellPrefab == null || _boardRoot == null ||
+            _boardRoot.gameObject.scene != gameObject.scene || !_boardRoot.gameObject.activeInHierarchy)
+        {
+            return FailInitialization("A cell prefab and active board root in this scene are required.");
+        }
+        if (_boardRoot.childCount != h || _boardRoot.GetComponentsInChildren<Cell>(true).Length != 0)
+        {
+            return FailInitialization($"The board root must contain {h} empty row transforms before cells are created.");
+        }
+
+        for (int y = 0; y < h; y++)
+        {
+            Transform row = _boardRoot.GetChild(y);
+            if (row.childCount != 0)
+            {
+                return FailInitialization($"Board row '{row.name}' must be empty before cells are created.");
+            }
+        }
+        for (int y = 0; y < h; y++)
+        {
+            Transform row = _boardRoot.GetChild(y);
+            for (int x = 0; x < w; x++)
+            {
+                Cell cell = Instantiate(_cellPrefab, row, false);
+                cell.name = $"Cell ({x}, {y})";
+                cell.transform.localPosition = new Vector3(x, 0, 0);
+            }
+        }
+        _cellsCreated = true;
         return true;
     }
 
