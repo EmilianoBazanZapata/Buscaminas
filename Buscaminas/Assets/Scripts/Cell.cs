@@ -15,15 +15,18 @@ public class Cell : MonoBehaviour
 
     public CellState State { get; private set; } = CellState.Covered;
 
-    // Start is called before the first frame update
-    void Start()
+    private int _x;
+    private int _y;
+    private bool _isInitialized;
+
+    public void Initialize(int x, int y, bool hasMine)
     {
-        GridHelper helper = GameObject.Find("GridHelper").GetComponent<GridHelper>();
-        HasMine = (Random.value < helper.MineWeight);
-        int x = (int)this.transform.position.x;
-        int y = (int)this.transform.parent.transform.position.y;
-        //asigno la posicion en la grilla
-        GridHelper.cells[x, y] = this;
+        _isInitialized = false;
+        _x = x;
+        _y = y;
+        HasMine = hasMine;
+        RestartTexture();
+        _isInitialized = true;
     }
     public void Reveal(int AdjacentCount)
     {
@@ -52,10 +55,6 @@ public class Cell : MonoBehaviour
         State = CellState.Covered;
         GetComponent<SpriteRenderer>().sprite = Panel;
     }
-    public void ReloadMines()
-    {
-        Start();
-    }
     //metodo para saber si la celda esta o no tapada
     public bool IsCovered()
     {
@@ -64,7 +63,8 @@ public class Cell : MonoBehaviour
     //metodo que se llama al hacer click en una celda
     private void OnMouseUpAsButton()
     {
-        if (GameManager.SharedInstance.CurrentGameState == GameState.InGame && IsCovered())
+        if (_isInitialized && GridHelper.IsInitialized && GameManager.SharedInstance != null &&
+            GameManager.SharedInstance.CurrentGameState == GameState.InGame && IsCovered())
         {
             if (HasMine)
             {
@@ -75,11 +75,8 @@ public class Cell : MonoBehaviour
             }
             else
             {
-                //cambiar la textura de la celda
-                int x = (int)this.transform.position.x;
-                int y = (int)this.transform.parent.transform.position.y;
                 //descubrir toda el area sin minas de la celda abierta
-                GridHelper.FloodFillUncover(x, y, new bool[GridHelper.w, GridHelper.h]);
+                GridHelper.FloodFillUncover(_x, _y, new bool[GridHelper.w, GridHelper.h]);
                 //comprobar si el juego a terminado o no
                 if (GridHelper.HasTheGameEnded())
                 {

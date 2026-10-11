@@ -33,12 +33,21 @@ public class GameManager : MonoBehaviour
     //metodo que llamare para iniciar el juego
     public void PlayGame()
     {
+        if (!GridHelper.IsInitialized)
+        {
+            Debug.LogError("Cannot start the game: the board is not initialized. Check the GridHelper board validation errors.", this);
+            return;
+        }
         SetGameState(GameState.InGame);
     }
     //reiniciar jeugo
     public void RestartGame()
     {
-        GridHelper.RestartCells();
+        if (!GridHelper.RestartCells())
+        {
+            BackToMenu();
+            return;
+        }
         PlayGame();
 
     }
