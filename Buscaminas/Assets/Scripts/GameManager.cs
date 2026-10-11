@@ -25,9 +25,17 @@ public class GameManager : MonoBehaviour
     }
     public void PlayGame()
     {
-        if (!GridHelper.IsInitialized)
+        StartDifficulty(Difficulty.Normal);
+    }
+
+    public void PlayEasy() => StartDifficulty(Difficulty.Easy);
+    public void PlayHard() => StartDifficulty(Difficulty.Hard);
+
+    private void StartDifficulty(Difficulty difficulty)
+    {
+        if (!GridHelper.SelectDifficulty(difficulty))
         {
-            Debug.LogError("Cannot start the game: the board is not initialized. Check the GridHelper board validation errors.", this);
+            BackToMenu();
             return;
         }
         SetGameState(GameState.InGame);
@@ -39,7 +47,7 @@ public class GameManager : MonoBehaviour
             BackToMenu();
             return;
         }
-        PlayGame();
+        SetGameState(GameState.InGame);
 
     }
     public void BackToMenu()

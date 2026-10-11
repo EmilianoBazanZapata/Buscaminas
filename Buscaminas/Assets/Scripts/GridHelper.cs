@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class GridHelper : MonoBehaviour
 {
-    public static readonly int w = 21;
-    public static readonly int h = 21;
+    public static int w => DifficultySettings.For(SelectedDifficulty).Columns;
+    public static int h => DifficultySettings.For(SelectedDifficulty).Rows;
     public static Cell[,] cells = new Cell[w, h];
 
-    [Range(0.0f, 1.0f)]
-    public float MineWeight = 0.15f;
+    public static Difficulty SelectedDifficulty { get; private set; } = Difficulty.Normal;
 
     [SerializeField] private Cell _cellPrefab;
     [SerializeField] private Transform _boardRoot;
@@ -17,6 +16,8 @@ public class GridHelper : MonoBehaviour
     private bool _isInitialized;
     private bool _cellsCreated;
     private Cell[] _createdCells;
+    private Transform _generatedRoot;
+    private Difficulty _createdDifficulty;
     public MinesweeperBoard Board { get; private set; }
 
     public static bool IsInitialized =>
@@ -25,6 +26,7 @@ public class GridHelper : MonoBehaviour
     private void Awake()
     {
         _owner = this;
+        SelectedDifficulty = Difficulty.Normal;
         _isInitialized = false;
         Board = null;
         cells = new Cell[w, h];
@@ -71,15 +73,18 @@ public class GridHelper : MonoBehaviour
             }
         }
         if (_boardRoot == null || !_boardRoot.gameObject.activeInHierarchy ||
-            _boardRoot.gameObject.scene != gameObject.scene || _boardRoot.childCount != h)
+            _boardRoot.gameObject.scene != gameObject.scene || _generatedRoot == null || !_generatedRoot.gameObject.activeInHierarchy ||
+            _generatedRoot.parent != _boardRoot || _generatedRoot.childCount != h ||
+            _generatedRoot.GetComponentsInChildren<Cell>(true).Length != w * h ||
+            _boardRoot.GetComponentsInChildren<Cell>().Length != w * h)
         {
             return FailInitialization("The board root must remain active in this scene with all expected rows.");
         }
         for (int y = 0; y < h; y++)
         {
-            if (_boardRoot.GetChild(y).childCount != w)
+            if (_generatedRoot.GetChild(y).childCount != w)
             {
-                return FailInitialization($"Board row '{_boardRoot.GetChild(y).name}' must contain {w} cells.");
+                return FailInitialization($"Board row '{_generatedRoot.GetChild(y).name}' must contain {w} cells.");
             }
         }
         foreach (Cell cell in _createdCells)
@@ -88,7 +93,7 @@ public class GridHelper : MonoBehaviour
             {
                 return FailInitialization($"Missing cell; expected {w * h} registered cells.");
             }
-            if (cell.transform.parent == null || cell.transform.parent.parent != _boardRoot ||
+            if (cell.transform.parent == null || cell.transform.parent.parent != _generatedRoot ||
                 cell.transform.childCount != 0 || cell.GetComponents<Cell>().Length != 1)
             {
                 return FailInitialization($"Cell '{GetCellPath(cell)}' must remain in its board row with exactly one Cell component and no children.");
@@ -150,12 +155,16 @@ public class GridHelper : MonoBehaviour
         }
 
         var mines = new bool[w, h];
-        for (int x = 0; x < w; x++)
+        var positions = new int[w * h];
+        for (int i = 0; i < positions.Length; i++) positions[i] = i;
+        int mineCount = DifficultySettings.For(SelectedDifficulty).Mines;
+        for (int i = 0; i < mineCount; i++)
         {
-            for (int y = 0; y < h; y++)
-            {
-                mines[x, y] = Random.value < MineWeight;
-            }
+            int selected = Random.Range(i, positions.Length);
+            int position = positions[selected];
+            positions[selected] = positions[i];
+            positions[i] = position;
+            mines[position % w, position / w] = true;
         }
         Board = new MinesweeperBoard(mines);
         cells = registeredCells;
@@ -166,39 +175,43 @@ public class GridHelper : MonoBehaviour
                 cells[x, y].Initialize(Board.GetCell(x, y));
             }
         }
+        Camera camera = Camera.main;
+        if (camera != null && camera.orthographic)
+        {
+            camera.transform.position = new Vector3((w - 1) * 0.5f, (h - 1) * 0.5f, camera.transform.position.z);
+            camera.orthographicSize = Mathf.Max(h * 0.5f, w * 0.5f / camera.aspect) + 1f;
+        }
         _isInitialized = true;
         return true;
     }
 
     private bool CreateCells()
     {
-        // Restarts reuse the existing views and still validate them; never hide missing cells by rebuilding.
-        if (_cellsCreated)
-        {
-            return true;
-        }
+        // Restart validates and reuses the same views; changing difficulty replaces only generated views.
+        if (_cellsCreated && _createdDifficulty == SelectedDifficulty) return true;
         if (_cellPrefab == null || _boardRoot == null ||
             _boardRoot.gameObject.scene != gameObject.scene || !_boardRoot.gameObject.activeInHierarchy)
         {
             return FailInitialization("A cell prefab and active board root in this scene are required.");
         }
-        if (_boardRoot.childCount != h || _boardRoot.GetComponentsInChildren<Cell>(true).Length != 0)
+        if (!_cellsCreated && _boardRoot.GetComponentsInChildren<Cell>(true).Length != 0)
         {
-            return FailInitialization($"The board root must contain {h} empty row transforms before cells are created.");
+            return FailInitialization("The board root must not contain cells before generation.");
         }
-
-        for (int y = 0; y < h; y++)
+        if (_generatedRoot != null)
         {
-            Transform row = _boardRoot.GetChild(y);
-            if (row.childCount != 0)
-            {
-                return FailInitialization($"Board row '{row.name}' must be empty before cells are created.");
-            }
+            _generatedRoot.gameObject.SetActive(false);
+            Destroy(_generatedRoot.gameObject);
         }
+        _generatedRoot = new GameObject("Generated board").transform;
+        _generatedRoot.SetParent(_boardRoot, false);
+        _generatedRoot.position = Vector3.zero;
         _createdCells = new Cell[w * h];
         for (int y = 0; y < h; y++)
         {
-            Transform row = _boardRoot.GetChild(y);
+            Transform row = new GameObject($"Row {y}").transform;
+            row.SetParent(_generatedRoot, false);
+            row.localPosition = new Vector3(0, y, 0);
             for (int x = 0; x < w; x++)
             {
                 Cell cell = Instantiate(_cellPrefab, row, false);
@@ -207,6 +220,7 @@ public class GridHelper : MonoBehaviour
                 _createdCells[y * w + x] = cell;
             }
         }
+        _createdDifficulty = SelectedDifficulty;
         _cellsCreated = true;
         return true;
     }
@@ -257,6 +271,12 @@ public class GridHelper : MonoBehaviour
                 GameManager.SharedInstance.GameOver();
                 break;
         }
+    }
+
+    public static bool SelectDifficulty(Difficulty difficulty)
+    {
+        SelectedDifficulty = difficulty;
+        return RestartCells();
     }
 
     public static bool RestartCells()
