@@ -13,6 +13,7 @@ public class GridHelper : MonoBehaviour
     private const float CoordinateTolerance = 0.0001f;
     private static GridHelper _owner;
     private bool _isInitialized;
+    public MinesweeperBoard Board { get; private set; }
 
     public static bool IsInitialized =>
         _owner != null && _owner.isActiveAndEnabled && _owner._isInitialized;
@@ -21,6 +22,7 @@ public class GridHelper : MonoBehaviour
     {
         _owner = this;
         _isInitialized = false;
+        Board = null;
         cells = new Cell[w, h];
     }
 
@@ -41,6 +43,7 @@ public class GridHelper : MonoBehaviour
     public bool InitializeBoard()
     {
         _isInitialized = false;
+        Board = null;
         cells = new Cell[w, h];
 
         if (_owner != this || !isActiveAndEnabled || !gameObject.scene.IsValid())
@@ -115,12 +118,21 @@ public class GridHelper : MonoBehaviour
             }
         }
 
+        var mines = new bool[w, h];
+        for (int x = 0; x < w; x++)
+        {
+            for (int y = 0; y < h; y++)
+            {
+                mines[x, y] = Random.value < MineWeight;
+            }
+        }
+        Board = new MinesweeperBoard(mines);
         cells = registeredCells;
         for (int x = 0; x < w; x++)
         {
             for (int y = 0; y < h; y++)
             {
-                cells[x, y].Initialize(x, y, Random.value < MineWeight);
+                cells[x, y].Initialize(Board.GetCell(x, y));
             }
         }
         _isInitialized = true;
@@ -149,101 +161,45 @@ public class GridHelper : MonoBehaviour
         return path;
     }
 
-    //revelamos la posicion de todas las minas al perder
-    public static void UncoverAllTheMines()
+    public static void RevealCell(int x, int y)
     {
-        if (!IsInitialized)
+        if (!IsInitialized || GameManager.SharedInstance == null ||
+            GameManager.SharedInstance.CurrentGameState != GameState.InGame)
         {
             return;
         }
-        foreach (Cell c in cells)
+
+        MinesweeperBoard board = _owner.Board;
+        foreach (BoardCell changedCell in board.Reveal(x, y))
         {
-            if (c.HasMine)
-            {
-                c.Reveal(0);
-            }
+            cells[changedCell.X, changedCell.Y].RefreshPresentation(
+                board.CountAdjacentMines(changedCell.X, changedCell.Y));
+        }
+
+        switch (board.Result)
+        {
+            case GameResult.Victory:
+                GameManager.SharedInstance.WinGame();
+                break;
+            case GameResult.Defeat:
+                GameManager.SharedInstance.GameOver();
+                break;
         }
     }
+
     public static bool HasMineAt(int x, int y)
     {
-        if (IsInitialized && x >= 0 && y >= 0 && x < w && y < h)
-        {
-            //estoy dentro de la parrilla
-            Cell c = cells[x, y];
-            return c.HasMine;
-        }
-        else
-        {
-            //estoy fuera d ela parrilla
-            return false;
-        }
+        return IsInitialized && _owner.Board.HasMineAt(x, y);
     }
+
     public static int CountAdjacentMines(int x, int y)
     {
-        int count = 0;
-        for (int i = x - 1; i <= x + 1; i++)
-        {
-            for (int j = y - 1; j <= y + 1; j++)
-            {
-                if ((i != x || j != y) && HasMineAt(i, j))
-                    count++;
-            }
-        }
-        return count;
+        return IsInitialized ? _owner.Board.CountAdjacentMines(x, y) : 0;
     }
 
-    public static void FloodFillUncover(int x, int y, bool[,] visited)
-    {
-        if (!IsInitialized)
-        {
-            return;
-        }
-        //solo debemos proceder si el punto (x,y) es valida
-
-        if (x >= 0 && y >= 0 && x < w && y < h)
-        {
-            //si ya pase por la celda el algoritmo de flood fill no debera hacer nada
-            if (visited[x, y] || cells[x, y].HasMine || !cells[x, y].IsCovered())
-            {
-                return;
-            }
-            visited[x, y] = true;
-            //cuento la cantidad de minsas adjacentes
-            int AdjacentMines = CountAdjacentMines(x, y);
-            //muesto el numero de minas
-            cells[x, y].Reveal(AdjacentMines);
-            //verifico si tengo minas para saber si puedo destapar la celda
-            if (AdjacentMines > 0)
-            {
-                return;
-            }
-            //visito todos los vecinos
-            for (int i = x - 1; i <= x + 1; i++)
-            {
-                for (int j = y - 1; j <= y + 1; j++)
-                {
-                    if (i != x || j != y)
-                    {
-                        FloodFillUncover(i, j, visited);
-                    }
-                }
-            }
-        }
-    }
     public static bool HasTheGameEnded()
     {
-        if (!IsInitialized)
-        {
-            return false;
-        }
-        foreach (Cell cell in cells)
-        {
-            if (!cell.HasMine && cell.IsCovered())
-            {
-                return false;
-            }
-        }
-        return true;
+        return IsInitialized && _owner.Board.Result == GameResult.Victory;
     }
     public static bool RestartCells()
     {

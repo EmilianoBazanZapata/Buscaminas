@@ -1,11 +1,5 @@
 using UnityEngine;
 
-public enum CellState
-{
-    Covered = 0,
-    Revealed = 1
-}
-
 public class Cell : MonoBehaviour
 {
     public bool HasMine;
@@ -13,77 +7,53 @@ public class Cell : MonoBehaviour
     public Sprite MineTexture;
     public Sprite Panel;
 
-    public CellState State { get; private set; } = CellState.Covered;
+    private BoardCell _model;
 
-    private int _x;
-    private int _y;
-    private bool _isInitialized;
+    public CellState State => _model != null ? _model.State : CellState.Covered;
 
-    public void Initialize(int x, int y, bool hasMine)
+    public void Initialize(BoardCell model)
     {
-        _isInitialized = false;
-        _x = x;
-        _y = y;
-        HasMine = hasMine;
-        RestartTexture();
-        _isInitialized = true;
+        _model = model;
+        // Retain the serialized field as a presentation mirror; the board owns mine data.
+        HasMine = model.HasMine;
+        RefreshPresentation(0);
     }
-    public void Reveal(int AdjacentCount)
-    {
-        if (!IsCovered())
-        {
-            return;
-        }
 
-        State = CellState.Revealed;
-        LoadTexture(AdjacentCount);
+    public void RefreshPresentation(int adjacentCount)
+    {
+        if (IsCovered())
+        {
+            RestartTexture();
+        }
+        else
+        {
+            LoadTexture(adjacentCount);
+        }
     }
 
     public void LoadTexture(int AdjacentCount)
     {
-        if (HasMine)
-        {
-            GetComponent<SpriteRenderer>().sprite = MineTexture;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().sprite = EmptyTexture[AdjacentCount];
-        }
+        GetComponent<SpriteRenderer>().sprite = _model != null && _model.HasMine
+            ? MineTexture
+            : EmptyTexture[AdjacentCount];
     }
+
     public void RestartTexture()
     {
-        State = CellState.Covered;
         GetComponent<SpriteRenderer>().sprite = Panel;
     }
-    //metodo para saber si la celda esta o no tapada
+
     public bool IsCovered()
     {
         return State == CellState.Covered;
     }
-    //metodo que se llama al hacer click en una celda
+
     private void OnMouseUpAsButton()
     {
-        if (_isInitialized && GridHelper.IsInitialized && GameManager.SharedInstance != null &&
-            GameManager.SharedInstance.CurrentGameState == GameState.InGame && IsCovered())
+        if (_model != null && GridHelper.IsInitialized && GameManager.SharedInstance != null &&
+            GameManager.SharedInstance.CurrentGameState == GameState.InGame)
         {
-            if (HasMine)
-            {
-                //mostrar mensaje de gameover
-                GridHelper.UncoverAllTheMines();
-                GameManager.SharedInstance.GameOver();
-                //Debug.Log("Hay Mina");
-            }
-            else
-            {
-                //descubrir toda el area sin minas de la celda abierta
-                GridHelper.FloodFillUncover(_x, _y, new bool[GridHelper.w, GridHelper.h]);
-                //comprobar si el juego a terminado o no
-                if (GridHelper.HasTheGameEnded())
-                {
-                    GameManager.SharedInstance.WinGame();
-                    Debug.Log("el juego ha terminado");
-                }
-            }
+            GridHelper.RevealCell(_model.X, _model.Y);
         }
     }
 }
