@@ -1,10 +1,3 @@
-public enum Difficulty
-{
-    Easy = 0,
-    Normal = 1,
-    Hard = 2
-}
-
 public readonly struct DifficultySettings
 {
     private DifficultySettings(int columns, int rows, int mines)

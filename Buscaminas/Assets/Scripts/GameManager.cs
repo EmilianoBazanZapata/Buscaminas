@@ -1,13 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum GameState
-{
-    InGame = 0,
-    GameOver = 1,
-    Menu = 2,
-    Victory = 3
-}
 public class GameManager : MonoBehaviour
 {
     public Canvas MenuCanvas;
