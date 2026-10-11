@@ -175,12 +175,6 @@ public class GridHelper : MonoBehaviour
                 cells[x, y].Initialize(Board.GetCell(x, y));
             }
         }
-        Camera camera = Camera.main;
-        if (camera != null && camera.orthographic)
-        {
-            camera.transform.position = new Vector3((w - 1) * 0.5f, (h - 1) * 0.5f, camera.transform.position.z);
-            camera.orthographicSize = Mathf.Max(h * 0.5f, w * 0.5f / camera.aspect) + 1f;
-        }
         _isInitialized = true;
         return true;
     }
@@ -256,6 +250,12 @@ public class GridHelper : MonoBehaviour
         }
 
         MinesweeperBoard board = _owner.Board;
+        if (x < 0 || y < 0 || x >= board.Width || y >= board.Height ||
+            board.GetCell(x, y).State == CellState.Revealed)
+        {
+            return;
+        }
+        GameManager.SharedInstance.RecordCellClick();
         foreach (BoardCell changedCell in board.Reveal(x, y))
         {
             cells[changedCell.X, changedCell.Y].RefreshPresentation(

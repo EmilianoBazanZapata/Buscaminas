@@ -18,6 +18,31 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text _resultMessage;
     [SerializeField] private Image _resultAccent;
     private Difficulty _selectedDifficulty = Difficulty.Normal;
+    private double _timerStartedAt;
+    private double _elapsedSeconds;
+    private bool _timerRunning;
+
+    public int ClickCount { get; private set; }
+    public double ElapsedSeconds => _timerRunning
+        ? Time.unscaledTimeAsDouble - _timerStartedAt : _elapsedSeconds;
+
+    public void RecordCellClick()
+    {
+        if (CurrentGameState != GameState.InGame || !GridHelper.IsInitialized) return;
+        ClickCount++;
+        if (!_timerRunning)
+        {
+            _timerStartedAt = Time.unscaledTimeAsDouble;
+            _timerRunning = true;
+        }
+    }
+
+    private void ResetStatistics()
+    {
+        ClickCount = 0;
+        _elapsedSeconds = 0;
+        _timerRunning = false;
+    }
 
     public static GameManager SharedInstance;
     public GameState CurrentGameState = GameState.Menu;
@@ -68,6 +93,7 @@ public class GameManager : MonoBehaviour
             BackToMenu();
             return;
         }
+        ResetStatistics();
         SetGameState(GameState.InGame);
     }
     public void RestartGame()
@@ -77,6 +103,7 @@ public class GameManager : MonoBehaviour
             BackToMenu();
             return;
         }
+        ResetStatistics();
         SetGameState(GameState.InGame);
 
     }
@@ -105,12 +132,17 @@ public class GameManager : MonoBehaviour
 
     private void SetGameState(GameState NewGameState)
     {
+        if (NewGameState != GameState.InGame && _timerRunning)
+        {
+            _elapsedSeconds = ElapsedSeconds;
+            _timerRunning = false;
+        }
         bool showMenu = NewGameState == GameState.Menu;
         bool showResult = NewGameState == GameState.GameOver || NewGameState == GameState.Victory;
         MenuCanvas.enabled = true;
         MenuCanvas.gameObject.SetActive(showMenu);
         GameCanvas.enabled = true;
-        GameCanvas.gameObject.SetActive(NewGameState == GameState.InGame);
+        GameCanvas.gameObject.SetActive(NewGameState == GameState.InGame || showResult);
         GameOverCanvas.enabled = true;
         GameOverCanvas.gameObject.SetActive(showResult);
         if (showResult)
