@@ -16,16 +16,18 @@ public enum GameResult
 
 public sealed class BoardCell
 {
-    internal BoardCell(int x, int y, bool hasMine)
+    internal BoardCell(int x, int y, bool hasMine, int adjacentMineCount)
     {
         X = x;
         Y = y;
         HasMine = hasMine;
+        AdjacentMineCount = adjacentMineCount;
     }
 
     public int X { get; }
     public int Y { get; }
     public bool HasMine { get; }
+    public int AdjacentMineCount { get; }
     public CellState State { get; private set; } = CellState.Covered;
 
     internal void Reveal()
@@ -58,7 +60,7 @@ public sealed class MinesweeperBoard
         {
             for (int y = 0; y < Height; y++)
             {
-                _cells[x, y] = new BoardCell(x, y, mines[x, y]);
+                _cells[x, y] = new BoardCell(x, y, mines[x, y], CalculateAdjacentMines(mines, x, y));
                 if (!mines[x, y])
                 {
                     _coveredSafeCells++;
@@ -77,14 +79,14 @@ public sealed class MinesweeperBoard
         return Contains(x, y) && _cells[x, y].HasMine;
     }
 
-    public int CountAdjacentMines(int x, int y)
+    private int CalculateAdjacentMines(bool[,] mines, int x, int y)
     {
         int count = 0;
         for (int i = x - 1; i <= x + 1; i++)
         {
             for (int j = y - 1; j <= y + 1; j++)
             {
-                if ((i != x || j != y) && HasMineAt(i, j))
+                if ((i != x || j != y) && Contains(i, j) && mines[i, j])
                 {
                     count++;
                 }
@@ -140,7 +142,7 @@ public sealed class MinesweeperBoard
         cell.Reveal();
         changedCells.Add(cell);
         _coveredSafeCells--;
-        if (CountAdjacentMines(x, y) > 0)
+        if (cell.AdjacentMineCount > 0)
         {
             return;
         }

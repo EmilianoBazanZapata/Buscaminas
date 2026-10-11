@@ -4,7 +4,6 @@ public class GridHelper : MonoBehaviour
 {
     public static readonly int w = 21;
     public static readonly int h = 21;
-    //guardo cuantas celdas hay en total
     public static Cell[,] cells = new Cell[w, h];
 
     [Range(0.0f, 1.0f)]
@@ -17,6 +16,7 @@ public class GridHelper : MonoBehaviour
     private static GridHelper _owner;
     private bool _isInitialized;
     private bool _cellsCreated;
+    private Cell[] _createdCells;
     public MinesweeperBoard Board { get; private set; }
 
     public static bool IsInitialized =>
@@ -65,52 +65,73 @@ public class GridHelper : MonoBehaviour
         foreach (GameObject root in gameObject.scene.GetRootGameObjects())
         {
             ownerCount += root.GetComponentsInChildren<GridHelper>(true).Length;
-            foreach (Cell cell in root.GetComponentsInChildren<Cell>(true))
+            if (root.transform != _boardRoot && root.GetComponentsInChildren<Cell>(true).Length != 0)
             {
-                string path = GetCellPath(cell);
-                if (cell.transform.parent == null)
-                {
-                    return FailInitialization($"Cell '{path}' is missing its row parent.");
-                }
-
-                float rawX = cell.transform.position.x;
-                float rawY = cell.transform.parent.position.y;
-                if (float.IsNaN(rawX) || float.IsInfinity(rawX) ||
-                    float.IsNaN(rawY) || float.IsInfinity(rawY) ||
-                    rawX < -CoordinateTolerance || rawX > w - 1 + CoordinateTolerance ||
-                    rawY < -CoordinateTolerance || rawY > h - 1 + CoordinateTolerance)
-                {
-                    return FailInitialization($"Cell '{path}' has out-of-range coordinates ({rawX}, {rawY}); expected x=0..{w - 1}, y=0..{h - 1}.");
-                }
-
-                int x = Mathf.RoundToInt(rawX);
-                int y = Mathf.RoundToInt(rawY);
-                if (Mathf.Abs(rawX - x) > CoordinateTolerance ||
-                    Mathf.Abs(rawY - y) > CoordinateTolerance)
-                {
-                    return FailInitialization($"Cell '{path}' has non-integer coordinates ({rawX}, {rawY}).");
-                }
-                if (registeredCells[x, y] != null)
-                {
-                    return FailInitialization($"Duplicate cell coordinates ({x}, {y}): '{GetCellPath(registeredCells[x, y])}' and '{path}'.");
-                }
-                if (!cell.isActiveAndEnabled || cell.GetComponent<SpriteRenderer>() == null ||
-                    cell.GetComponent<BoxCollider2D>() == null ||
-                    cell.Panel == null || cell.MineTexture == null ||
-                    cell.EmptyTexture == null || cell.EmptyTexture.Length != 9)
-                {
-                    return FailInitialization($"Cell '{path}' must be active and have a SpriteRenderer, BoxCollider2D, Panel, MineTexture, and nine numbered sprites.");
-                }
-                foreach (Sprite sprite in cell.EmptyTexture)
-                {
-                    if (sprite == null)
-                    {
-                        return FailInitialization($"Cell '{path}' has a missing numbered sprite.");
-                    }
-                }
-
-                registeredCells[x, y] = cell;
+                return FailInitialization($"Unexpected cells outside the board root in '{root.name}'.");
             }
+        }
+        if (_boardRoot == null || !_boardRoot.gameObject.activeInHierarchy ||
+            _boardRoot.gameObject.scene != gameObject.scene || _boardRoot.childCount != h)
+        {
+            return FailInitialization("The board root must remain active in this scene with all expected rows.");
+        }
+        for (int y = 0; y < h; y++)
+        {
+            if (_boardRoot.GetChild(y).childCount != w)
+            {
+                return FailInitialization($"Board row '{_boardRoot.GetChild(y).name}' must contain {w} cells.");
+            }
+        }
+        foreach (Cell cell in _createdCells)
+        {
+            if (cell == null)
+            {
+                return FailInitialization($"Missing cell; expected {w * h} registered cells.");
+            }
+            if (cell.transform.parent == null || cell.transform.parent.parent != _boardRoot ||
+                cell.transform.childCount != 0 || cell.GetComponents<Cell>().Length != 1)
+            {
+                return FailInitialization($"Cell '{GetCellPath(cell)}' must remain in its board row with exactly one Cell component and no children.");
+            }
+            string path = GetCellPath(cell);
+
+            float rawX = cell.transform.position.x;
+            float rawY = cell.transform.parent.position.y;
+            if (float.IsNaN(rawX) || float.IsInfinity(rawX) ||
+                float.IsNaN(rawY) || float.IsInfinity(rawY) ||
+                rawX < -CoordinateTolerance || rawX > w - 1 + CoordinateTolerance ||
+                rawY < -CoordinateTolerance || rawY > h - 1 + CoordinateTolerance)
+            {
+                return FailInitialization($"Cell '{path}' has out-of-range coordinates ({rawX}, {rawY}); expected x=0..{w - 1}, y=0..{h - 1}.");
+            }
+
+            int x = Mathf.RoundToInt(rawX);
+            int y = Mathf.RoundToInt(rawY);
+            if (Mathf.Abs(rawX - x) > CoordinateTolerance ||
+                Mathf.Abs(rawY - y) > CoordinateTolerance)
+            {
+                return FailInitialization($"Cell '{path}' has non-integer coordinates ({rawX}, {rawY}).");
+            }
+            if (registeredCells[x, y] != null)
+            {
+                return FailInitialization($"Duplicate cell coordinates ({x}, {y}): '{GetCellPath(registeredCells[x, y])}' and '{path}'.");
+            }
+            if (!cell.isActiveAndEnabled || cell.GetComponent<SpriteRenderer>() == null ||
+                cell.GetComponent<BoxCollider2D>() == null ||
+                cell.Panel == null || cell.MineTexture == null ||
+                cell.EmptyTexture == null || cell.EmptyTexture.Length != 9)
+            {
+                return FailInitialization($"Cell '{path}' must be active and have a SpriteRenderer, BoxCollider2D, Panel, MineTexture, and nine numbered sprites.");
+            }
+            foreach (Sprite sprite in cell.EmptyTexture)
+            {
+                if (sprite == null)
+                {
+                    return FailInitialization($"Cell '{path}' has a missing numbered sprite.");
+                }
+            }
+
+            registeredCells[x, y] = cell;
         }
 
         if (ownerCount != 1)
@@ -174,6 +195,7 @@ public class GridHelper : MonoBehaviour
                 return FailInitialization($"Board row '{row.name}' must be empty before cells are created.");
             }
         }
+        _createdCells = new Cell[w * h];
         for (int y = 0; y < h; y++)
         {
             Transform row = _boardRoot.GetChild(y);
@@ -182,6 +204,7 @@ public class GridHelper : MonoBehaviour
                 Cell cell = Instantiate(_cellPrefab, row, false);
                 cell.name = $"Cell ({x}, {y})";
                 cell.transform.localPosition = new Vector3(x, 0, 0);
+                _createdCells[y * w + x] = cell;
             }
         }
         _cellsCreated = true;
@@ -222,7 +245,7 @@ public class GridHelper : MonoBehaviour
         foreach (BoardCell changedCell in board.Reveal(x, y))
         {
             cells[changedCell.X, changedCell.Y].RefreshPresentation(
-                board.CountAdjacentMines(changedCell.X, changedCell.Y));
+                changedCell.AdjacentMineCount);
         }
 
         switch (board.Result)
@@ -236,20 +259,6 @@ public class GridHelper : MonoBehaviour
         }
     }
 
-    public static bool HasMineAt(int x, int y)
-    {
-        return IsInitialized && _owner.Board.HasMineAt(x, y);
-    }
-
-    public static int CountAdjacentMines(int x, int y)
-    {
-        return IsInitialized ? _owner.Board.CountAdjacentMines(x, y) : 0;
-    }
-
-    public static bool HasTheGameEnded()
-    {
-        return IsInitialized && _owner.Board.Result == GameResult.Victory;
-    }
     public static bool RestartCells()
     {
         if (_owner == null)

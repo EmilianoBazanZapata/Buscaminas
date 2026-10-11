@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce7213c52760c74a88fd6615bb2b75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasMine: 0
   EmptyTexture:
   - {fileID: 540559482706355522, guid: 0ff11e254cb4e594b9e5ebaca909b695, type: 3}
   - {fileID: 2087093082785922767, guid: 0ff11e254cb4e594b9e5ebaca909b695, type: 3}
