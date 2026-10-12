@@ -1,108 +1,159 @@
-# 💣 MineGrid: Buscaminas pixelado
+**English** · [Español](README.es.md)
 
-<p align="center">
-  <strong>Un pequeño mundo pixelado. Una cuadrícula llena de peligro.</strong><br>
-  Lee los números, confía en tu lógica y descubre todas las casillas seguras.
-</p>
+# 💣 MineGrid
 
-<p align="center">
-  <a href="https://emiliano-bazan-zapata.itch.io/minegrid-pixel-minesweeper"><strong>▶ JUGAR / DESCARGAR EN ITCH.IO</strong></a>
-</p>
+![Unity](https://img.shields.io/badge/Unity-6000.3.5f2-222222?logo=unity&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-Unity-68217A?logo=csharp&logoColor=white)
+![Genre](https://img.shields.io/badge/Genre-Puzzle%20%2F%20Logic-65B86E)
+![Status](https://img.shields.io/badge/Status-In%20development-F2C14E)
+<!-- TODO: add platform and license badges once decided -->
 
-<p align="center">
-  <img alt="Unity 6" src="https://img.shields.io/badge/Unity-6000.3.5f2-222222?logo=unity&logoColor=white">
-  <img alt="C Sharp" src="https://img.shields.io/badge/Hecho%20con-C%23-68217A?logo=csharp&logoColor=white">
-  <img alt="Género" src="https://img.shields.io/badge/G%C3%A9nero-Puzzle%20%2F%20L%C3%B3gica-65B86E">
-  <img alt="Estado" src="https://img.shields.io/badge/Estado-En%20desarrollo-F2C14E">
-</p>
+**A pixel-art take on the classic Minesweeper.** Read the numbers, trust your logic and uncover every safe tile.
+
+<!-- TODO: replace with a real gameplay GIF -->
+![MineGrid gameplay](docs/media/gameplay.gif)
+
+[**▶ Play / ⬇ Download on itch.io**](https://emiliano-bazan-zapata.itch.io/minegrid-pixel-minesweeper)
 
 ---
 
-**MineGrid** reimagina el clásico Buscaminas con una estética pixelada. Cada número es una pista, cada casilla que revelas implica una decisión y un solo movimiento equivocado puede terminar la partida. Elige una dificultad, analiza la cuadrícula y descubre todas las casillas seguras.
+## About the game
 
-> Creado por **Binary Suns**.
+MineGrid reimagines Minesweeper with a pixel-art look. Every number is a clue, every tile you reveal is a decision, and one wrong move ends the run.
 
-## ✨ Características
+Pick a difficulty, read the grid and clear the board. A timer and a click counter track each run, with a summary at the end.
 
-- Tres tamaños de tablero, desde un desafío rápido hasta una cuadrícula amplia llena de minas.
-- Minas distribuidas al azar y pistas calculadas automáticamente según las minas vecinas.
-- Expansión automática por las zonas vacías conectadas.
-- Pantallas de victoria y derrota con opción para volver a intentarlo o regresar al menú.
-- Cronómetro y contador de clics en tiempo real, con un resumen al terminar la partida.
-- Tablero adaptable y compatible con las áreas seguras de la interfaz de Unity.
-- Gráficos y tipografía con estilo pixel art.
+## Features
 
-## 🎮 Dificultad
+- Three board sizes, from a quick challenge to a wide grid full of mines.
+- Randomly placed mines, with clues calculated automatically from neighbouring mines.
+- Automatic flood fill across connected empty areas.
+- Win and lose screens with options to retry or return to the menu.
+- Real-time timer and click counter, with an end-of-run summary.
+- Responsive board that respects Unity UI safe areas.
+- Pixel-art graphics and typography.
 
-| Modo | Tablero | Minas |
-|:--|:--:|--:|
-| Fácil | 9 × 9 | 10 |
-| Normal | 16 × 16 | 40 |
-| Difícil | 30 × 16 | 99 |
+### Difficulty
 
-## 🕹️ Cómo jugar
+| Mode   | Board   | Mines |
+| ------ | ------- | ----- |
+| Easy   | 9 × 9   | 10    |
+| Normal | 16 × 16 | 40    |
+| Hard   | 30 × 16 | 99    |
 
-1. Elige una dificultad en el menú principal e inicia una partida.
-2. Haz clic en una casilla cubierta para descubrirla.
-3. El número indica cuántas minas hay alrededor de esa casilla, incluidas las diagonales.
-4. Si descubres una zona vacía, se abrirán automáticamente las casillas seguras conectadas.
-5. Descubre todas las casillas seguras para ganar. Si encuentras una mina, la partida termina.
+## How to play
 
-El cronómetro empieza con el primer clic válido. Durante la partida y en la pantalla de resultados se muestran el tiempo y la cantidad de clics.
+1. Choose a difficulty in the main menu and start a game.
+2. Click a covered tile to reveal it.
+3. A number shows how many mines surround that tile, diagonals included.
+4. Revealing an empty tile automatically opens the connected safe tiles.
+5. Reveal every safe tile to win. Hitting a mine ends the game.
 
-## 🧰 Abrir el proyecto de Unity
+The timer starts on the first valid click. Time and click count are shown during the game and on the results screen.
 
-### Requisitos
+## Technical highlights
+
+- **Rules separated from presentation:** `MinesweeperBoard` and `BoardCell` hold the board rules and tile state; Unity components only draw them and forward input.
+- **Uniform mine placement:** mines are placed with a partial Fisher–Yates shuffle, so every layout is equally likely and no retries are needed.
+- **Difficulty in one place:** `DifficultySettings` centralizes board size and mine count for each mode.
+- **Flood fill** for revealing connected empty areas.
+- **Responsive layout:** `GameHud` fits the board to the available screen space and safe areas.
+- **Centralized game flow:** `GameManager` coordinates menu, game, restart, win and lose states.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    CLICK["Player click"]
+    CELL["Cell<br/>Tile view · Input"]
+    GRID["GridHelper<br/>Builds grid · Places mines · Reveals"]
+    BOARD["MinesweeperBoard + BoardCell<br/>Rules · Tile state"]
+    DIFF["DifficultySettings<br/>Size · Mines"]
+    GM["GameManager<br/>Menu · Game · Win/Lose"]
+    HUD["GameHud<br/>Time · Clicks · Mines · Layout"]
+
+    CLICK --> CELL
+    CELL --> GRID
+    GRID --> BOARD
+    DIFF --> GRID
+    GRID -->|"click · win · lose"| GM
+    GM -->|"difficulty · restart"| GRID
+    HUD -.->|reads| GM
+    HUD -.->|reads| GRID
+```
+
+| Class                             | Responsibility                                                       |
+| --------------------------------- | -------------------------------------------------------------------- |
+| `MinesweeperBoard` / `BoardCell`  | Board rules and the state of each tile                               |
+| `Cell`                            | View of one tile; forwards clicks to `GridHelper`                    |
+| `GridHelper`                      | Builds the visual grid, places mines and connects input to the board |
+| `GameManager`                     | Menu, game, restart, win and lose states                             |
+| `GameHud`                         | Run stats and fitting the board to the screen                        |
+| `DifficultySettings`              | Board size and mine count per mode                                   |
+
+<details>
+<summary><b>Project structure</b></summary>
+
+```text
+MineGrid/
+├── Assets/
+│   ├── Prefabs/       # Reusable tile prefab
+│   ├── Scenes/        # Main game scene
+│   ├── Scripts/       # Game rules and Unity presentation
+│   └── Sprites/       # Pixel-art visual assets
+├── Packages/          # Unity package manifest and lock file
+└── ProjectSettings/   # Project and editor settings
+```
+
+</details>
+
+## Testing
+
+The game is currently tested manually: board generation on all three difficulties, clue numbers, flood fill, win and lose conditions, timer and click counter, and the board layout at different resolutions.
+
+## Getting started
+
+### Requirements
 
 - [Unity Hub](https://unity.com/download)
 - Unity Editor **6000.3.5f2**
 
-### Primeros pasos
+### Run locally
 
-1. Clona o descarga este repositorio.
-2. En Unity Hub, selecciona **Add project from disk** (Agregar proyecto desde el disco).
-3. Selecciona la carpeta `Buscaminas/` dentro del repositorio.
-4. Abre el proyecto con Unity **6000.3.5f2**.
-5. Si la escena no está abierta, abre `Assets/Scenes/Game.unity`.
-6. Presiona **Play**.
-
-Al abrir el proyecto, Unity resolverá los paquetes declarados en `Packages/manifest.json`.
-
-## 🗂️ Estructura del proyecto
-
-```text
-Buscaminas/
-├── Assets/
-│   ├── Prefabs/       # Prefab reutilizable de una casilla
-│   ├── Scenes/        # Escena principal del juego
-│   ├── Scripts/       # Reglas del juego y presentación en Unity
-│   └── Sprites/       # Recursos visuales con estilo pixel art
-├── Packages/          # Manifiesto y archivo de bloqueo de paquetes de Unity
-└── ProjectSettings/   # Configuración del proyecto y del editor
+```bash
+git clone https://github.com/EmilianoBazanZapata/MineGrid.git
 ```
 
-### Código del juego
+1. In Unity Hub, choose **Add project from disk** and select the `Buscaminas/` folder inside the repository.
+2. Open it with Unity **6000.3.5f2**. Unity restores the packages declared in `Packages/manifest.json`.
+3. Open `Assets/Scenes/Game.unity`.
+4. Press **Play**.
 
-- `MinesweeperBoard` y `BoardCell` contienen las reglas del tablero y el estado de cada casilla.
-- `GridHelper` construye la cuadrícula visual, distribuye las minas y conecta la entrada del jugador con el tablero.
-- `GameManager` coordina el menú, la partida, el reinicio y los estados de victoria y derrota.
-- `GameHud` muestra las estadísticas de la partida y ajusta el tablero al espacio disponible en pantalla.
-- `DifficultySettings` define las dimensiones y la cantidad de minas de cada modo.
+## Build
 
-## 📦 Jugar y descargar
+The game uses a single scene, `Assets/Scenes/Game.unity`. To build it, open **File > Build Profiles**, check that the scene is enabled, choose a target and press **Build**.
 
-Puedes jugar a MineGrid o encontrar las descargas disponibles en [itch.io](https://emiliano-bazan-zapata.itch.io/minegrid-pixel-minesweeper).
+Compiled versions are published on [itch.io](https://emiliano-bazan-zapata.itch.io/minegrid-pixel-minesweeper). This repository contains the Unity source project.
 
-Este repositorio de GitHub contiene el código fuente del proyecto de Unity. Las versiones compiladas y las descargas están disponibles en la página del juego en itch.io.
+## Current scope and next steps
 
-## 🛠️ Tecnologías
+MineGrid is a complete, playable game in active development. Planned next steps:
 
-- Unity **6000.3.5f2**
-- C#
-- Unity UI (uGUI)
+- Edit Mode tests for the board rules: neighbour counts and flood fill.
+- Moving mine placement into `MinesweeperBoard`, so all rules live in one testable class.
+- A safe first click.
+
+## Credits and third-party assets
+
+<!-- TODO: list the sources of the sprites and of Fonts/Pixel-Regular.ttf with author, link and license -->
+Game design and programming by Emiliano Bazán-Zapata.
+
+## License
+
+<!-- TODO: add LICENSE file and state the chosen license here -->
 
 ---
 
-<p align="center">
-  <sub>Piensa bien. Descubre con valentía. ¡Buena suerte! 💥</sub>
-</p>
+**Binary Suns Studio** · [Website](https://binarysunsstudio.com.ar) · [itch.io](https://emiliano-bazan-zapata.itch.io) · [LinkedIn](https://www.linkedin.com/in/emiliano-bazán-zapata-18705721a)
+
+Good luck! 💥
