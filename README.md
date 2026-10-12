@@ -6,6 +6,10 @@
 </p>
 
 <p align="center">
+  <a href="https://emiliano-bazan-zapata.itch.io/minegrid-pixel-minesweeper"><strong>▶ PLAY / DOWNLOAD ON ITCH.IO</strong></a>
+</p>
+
+<p align="center">
   <img alt="Unity 6" src="https://img.shields.io/badge/Unity-6000.3.5f2-222222?logo=unity&logoColor=white">
   <img alt="C Sharp" src="https://img.shields.io/badge/Made%20with-C%23-68217A?logo=csharp&logoColor=white">
   <img alt="Genre" src="https://img.shields.io/badge/Genre-Puzzle%20%2F%20Logic-65B86E">
@@ -85,9 +89,11 @@ Buscaminas/
 - `GameHud` displays run statistics and keeps the board framed for the available screen area.
 - `DifficultySettings` defines the dimensions and mine count for each mode.
 
-## 📦 Builds
+## 📦 Play and downloads
 
-This repository contains the Unity project source. It does not currently include ready-to-download game builds. When releases are published, platform-specific downloads will be linked here.
+Play MineGrid or find the available downloads on [itch.io](https://emiliano-bazan-zapata.itch.io/minegrid-pixel-minesweeper).
+
+This GitHub repository contains the Unity project source. Builds and downloads are provided on the itch.io project page.
 
 ## 🛠️ Built with
 
